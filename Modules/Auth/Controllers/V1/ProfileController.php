@@ -24,19 +24,19 @@ class ProfileController extends BaseController
 
     public function show()
     {
-        $user = $this->profileService->show(Auth::user()->id);
+        $user = $this->profileService->show(Auth::guard('api')->id());
         return (new Response(ProfileResource::make($user)))->success(message: "Profile Details");
     }
 
     public function update(UpdateProfileRequest $request)
     {
-        $user = $this->profileService->update(Auth::user()->id, ProfileDTO::fromRequest($request));
-        return (new Response($user))->success(message: "Profile updated successfully.");
+        $user = $this->profileService->update(Auth::guard('api')->id(), ProfileDTO::fromRequest($request));
+        return (new Response(ProfileResource::make($user)))->success(message: "Profile updated successfully.");
     }
 
     public function delete()
     {
-        $this->profileService->delete(Auth::user()->id);
+        $this->profileService->delete(Auth::guard('api')->id());
         return (new Response())->success(message: "Profile deleted successfully.");
     }
 }

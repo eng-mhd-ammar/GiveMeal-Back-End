@@ -16,7 +16,7 @@ interface ProfileServiceInterface
     public function delete(string $model_id);
     public function ForceDelete(string $model_id);
     public function restore($model_id);
-    public function phoneUpdateRequest(string $model_id, PhoneUpdateRequestDTO $DTO);
-    public function phoneUpdateSendOtp(PhoneUpdateSendOtpDTO  $DTO);
-    public function phoneUpdateCheckOtp(PhoneUpdateCheckOtpDTO $DTO);
+    // public function phoneUpdateRequest(string $model_id, PhoneUpdateRequestDTO $DTO);
+    // public function phoneUpdateSendOtp(PhoneUpdateSendOtpDTO  $DTO);
+    // public function phoneUpdateCheckOtp(PhoneUpdateCheckOtpDTO $DTO);
 }

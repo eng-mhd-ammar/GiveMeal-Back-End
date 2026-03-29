@@ -21,27 +21,15 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'photo' => [new FileOrUrl('jpg, jpeg, png, gif, bmp, tiff, tif, webp, heic, heif, svg')],
+            'avatar' => [new FileOrUrl(['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'tif', 'webp', 'heic', 'heif', 'svg'])],
             'first_name' => ['string'],
             'last_name' => ['string'],
-            'username' => ['string', new UniqueNotDeleted(User::class, 'username', Auth::user()->id)],
-            'password' => ['string', 'min:8', 'max:20'],
+            'username' => ['string', new UniqueNotDeleted(User::class, 'username', Auth::guard('api')->id())],
             'birthday' => ['date'],
-            'gender' => ['boolean', new EnumRule(Gender::class)],
-
-            'addresses' => ['required', 'array'],
-            'addresses.*.id' => ['integer', 'exists:addresses,id', new NotSoftDeleted(Address::class)],
-            'addresses.*.name' => ['required', 'string'],
-            'addresses.*.user_id' => ['integer', 'exists:users,id', new NotSoftDeleted(User::class), new ProhibitedUnlessHasRole('admin', Auth::user()->id)],
-            'addresses.*.state_id' => ['required', 'integer', 'exists:states,id', new NotSoftDeleted(State::class)],
-            'addresses.*.city' => ['required', 'string'],
-            'addresses.*.latitude' => ['required', 'numeric'],
-            'addresses.*.longitude' => ['required', 'numeric'],
-            'addresses.*.details' => ['required', 'string'],
-            'addresses.*.phone' => ['string', 'regex:/^\+9639\d{8}$/'],
-
-            'topics' => ['required', 'array'],
-            'topics.*' => ['required', 'string', new ExistsOrMinusOne(Topic::class), new NotSoftDeleted(Topic::class)],
+            // 'phone' => ['string', new UniqueNotDeleted(User::class, 'phone'), 'regex:/^\+9639\d{8}$/'],
+            // 'email' => ['email', new UniqueNotDeleted(User::class, 'email')],
+            'password' => ['string', 'min:8', 'max:20'],
+            'gender' => ['integer', new EnumRule(Gender::class), 'default:1'],
         ];
     }
 }
