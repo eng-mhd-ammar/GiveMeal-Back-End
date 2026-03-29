@@ -55,7 +55,7 @@ class JWTToken
     {
         $tokenParts = explode('.', $token);
         if (count($tokenParts) == 3) {
-            return (array)json_decode(base64_decode($tokenParts[1]));
+            return (array) json_decode(base64_decode($tokenParts[1]));
         } else {
             return false;
         }

@@ -59,28 +59,28 @@ class User extends Authenticatable implements JWTSubject
     public function isAdmin(): Attribute
     {
         return new Attribute(
-            get: fn () => Auth::guard('api')->check() && $this->hasRole('admin'),
+            get: fn() => Auth::guard('api')->check() && $this->hasRole('admin'),
         );
     }
 
     public function isUser(): Attribute
     {
         return new Attribute(
-            get: fn () => Auth::guard('api')->check() && $this->hasRole('user'),
+            get: fn() => Auth::guard('api')->check() && $this->hasRole('user'),
         );
     }
 
     public function avatarUrl(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->avatar ? asset($this->avatar) : '',
+            get: fn() => $this->avatar ? asset($this->avatar) : '',
         );
     }
 
     public function fullName(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->first_name . ' ' . $this->last_name,
+            get: fn() => $this->first_name . ' ' . $this->last_name,
         );
     }
 
@@ -94,7 +94,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function verificationCodes(): HasMany {
+    public function verificationCodes(): HasMany
+    {
         return $this->hasMany(VerificationCode::class, 'user_id', 'id');
     }
 }

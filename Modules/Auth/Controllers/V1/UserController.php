@@ -12,9 +12,7 @@ use Modules\Core\Utilities\Response;
 
 class UserController extends BaseController
 {
-    public function __construct(protected UserServiceInterface $modelService)
-    {
-    }
+    public function __construct(protected UserServiceInterface $modelService) {}
 
     public function index()
     {

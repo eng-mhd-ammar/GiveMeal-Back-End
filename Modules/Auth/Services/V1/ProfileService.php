@@ -9,9 +9,7 @@ use Modules\Core\Services\BaseService;
 
 class ProfileService extends BaseService implements ProfileServiceInterface
 {
-    public function __construct(protected ProfileRepositoryInterface $repository)
-    {
-    }
+    public function __construct(protected ProfileRepositoryInterface $repository) {}
 
     // public function phoneUpdateRequest($model_id, $DTO)
     // {

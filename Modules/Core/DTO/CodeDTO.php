@@ -8,8 +8,7 @@ class CodeDTO extends BaseDTO
 {
     public function __construct(
         public ?string $loginField,
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(SendCodeRequest $request): self
     {

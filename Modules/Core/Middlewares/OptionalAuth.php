@@ -17,7 +17,7 @@ class OptionalAuth
             $user = Auth::guard('sanctum')->user();
 
             if (!$user) {
-                return (new Response())->error(message: "Invalid or expired token.", code:Response::HTTP_UNAUTHORIZED);
+                return (new Response())->error(message: "Invalid or expired token.", code: Response::HTTP_UNAUTHORIZED);
             }
 
             Auth::setUser($user);

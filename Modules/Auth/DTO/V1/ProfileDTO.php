@@ -19,8 +19,7 @@ class ProfileDTO extends BaseDTO
         public ?string $password,
         public ?Carbon $birthday,
         public ?bool $gender,
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(UpdateProfileRequest $request): self
     {

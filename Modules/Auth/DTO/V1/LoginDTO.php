@@ -10,8 +10,7 @@ class LoginDTO extends BaseDTO
     public function __construct(
         public ?string $loginField,
         public ?string $password,
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(LoginRequest $request): self
     {

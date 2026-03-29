@@ -24,7 +24,7 @@ class BaseDTO
 
     public function filterNull(array $skip = []): self
     {
-        $attributesArray = (array)$this;
+        $attributesArray = (array) $this;
 
         foreach ($attributesArray as $attribute => $value) {
             if (is_null($value) && (!in_array($attribute, $skip))) {
@@ -37,7 +37,7 @@ class BaseDTO
 
     public function filter(array $attributes = [], array $values = [], array $skip = []): self
     {
-        $attributesArray = (array)$this;
+        $attributesArray = (array) $this;
 
         $valuesIsSet = count($values);
         $attributesIsSet = count($attributes);
@@ -118,9 +118,9 @@ class BaseDTO
         return 'storage/' . $fullPath;
     }
 
-    public static function handleMultipleFilesStoring(array|null $files, string $path, ?array $names = null, string $disk = 'public'): array
+    public static function handleMultipleFilesStoring(?array $files, string $path, ?array $names = null, string $disk = 'public'): array
     {
-        if(is_null($files)) {
+        if (is_null($files)) {
             return [];
         }
 
@@ -130,7 +130,7 @@ class BaseDTO
         }, $files, array_keys($files));
     }
 
-    public static function prepareRequestArray(?array $data): null|array
+    public static function prepareRequestArray(?array $data): ?array
     {
         if (!is_array($data)) {
             return null;

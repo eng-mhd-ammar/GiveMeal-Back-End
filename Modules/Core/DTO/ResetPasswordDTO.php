@@ -10,8 +10,7 @@ class ResetPasswordDTO extends BaseDTO
         public ?string $password,
         public ?string $phone,
         public ?string $email,
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(ResetPasswordRequest $request): self
     {

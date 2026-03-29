@@ -43,8 +43,5 @@ class FileManager
         }
         return false;
     }
-    public function new()
-    {
-
-    }
+    public function new() {}
 }

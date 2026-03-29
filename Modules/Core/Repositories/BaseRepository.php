@@ -236,9 +236,9 @@ class BaseRepository
     {
         $result = $callback($this->query);
 
-        if ($result instanceof \Illuminate\Database\Eloquent\Builder ||
-            $result instanceof \Illuminate\Database\Query\Builder ||
-            $result instanceof QueryBuilder) {
+        if ($result instanceof \Illuminate\Database\Eloquent\Builder
+            || $result instanceof \Illuminate\Database\Query\Builder
+            || $result instanceof QueryBuilder) {
             $this->query = $result;
             return $this;
         }

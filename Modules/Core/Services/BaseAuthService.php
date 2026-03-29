@@ -27,7 +27,7 @@ class BaseAuthService
 
     public function login(BaseDTO $DTO): array
     {
-        $model = $this->model::whereAny($this->columns, $DTO->loginField)->firstOr(fn () => $this->throwInvalidCredentials());
+        $model = $this->model::whereAny($this->columns, $DTO->loginField)->firstOr(fn() => $this->throwInvalidCredentials());
         if ($this->checkActivity) {
             $model->is_active === true ?: $this->throwActivationException();
         }
@@ -57,7 +57,7 @@ class BaseAuthService
 
         $data = UserResource::make($model);
 
-        $this->sendCode(new CodeDTO($DTO->email?? $DTO->phone));
+        $this->sendCode(new CodeDTO($DTO->email ?? $DTO->phone));
 
         return $data;
     }
@@ -97,7 +97,7 @@ class BaseAuthService
 
         $type = null;
 
-        if($this->isEmail($DTO->loginField)) {
+        if ($this->isEmail($DTO->loginField)) {
             $type = VerificationCodeType::EMAIL_VERIFICATION->value;
             // send to email
         } else {

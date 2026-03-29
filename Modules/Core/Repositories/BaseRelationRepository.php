@@ -45,7 +45,7 @@ class BaseRelationRepository
     {
         return $model->$relation()->syncWithPivotValues($values);
     }
-    
+
     public function detach(Model $model, string $relation, $values)
     {
         return $model->$relation()->detach($values);
