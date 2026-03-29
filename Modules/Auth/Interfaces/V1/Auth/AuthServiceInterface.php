@@ -14,6 +14,6 @@ interface AuthServiceInterface
     public function login(LoginDTO $DTO): array;
     public function register(RegisterDTO $DTO);
     public function refresh(): array;
-    public function sendCode(CodeDTO $DTO, $type);
+    public function sendCode(CodeDTO $DTO);
     public function checkOTP(OtpDTO $DTO);
 }

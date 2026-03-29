@@ -12,49 +12,49 @@ use Modules\Core\Utilities\Response;
 
 class UserController extends BaseController
 {
-    public function __construct(protected UserServiceInterface $userService)
+    public function __construct(protected UserServiceInterface $modelService)
     {
     }
 
     public function index()
     {
-        $users = $this->userService->index();
-        return (new Response(UserResource::collection($users)->resource))->success(message: "All users.");
+        $models = $this->modelService->index();
+        return (new Response(UserResource::collection($models)->resource))->success(message: "All users.");
     }
 
-    public function show(string $user_id)
+    public function show(string $modelId)
     {
-        $user = $this->userService->show($user_id);
-        return (new Response(UserResource::make($user)))->success(message: "User details");
+        $model = $this->modelService->show($modelId);
+        return (new Response(UserResource::make($model)))->success(message: "User details.");
     }
 
     public function create(CreateUserRequest $request)
     {
-        $model = $this->userService->create(UserDTO::fromRequest($request));
+        $this->modelService->create(UserDTO::fromRequest($request));
         return (new Response())->success(message: "User created successfully.", code: Response::HTTP_CREATED);
     }
 
-    public function update(UpdateUserRequest $request, string $user_id)
+    public function update(UpdateUserRequest $request, string $modelId)
     {
-        $this->userService->update($user_id, UserDTO::fromRequest($request));
+        $this->modelService->update($modelId, UserDTO::fromRequest($request));
         return (new Response())->success(message: "User updated successfully.");
     }
 
-    public function delete(string $user_id)
+    public function delete(string $modelId)
     {
-        $this->userService->delete($user_id);
+        $this->modelService->delete($modelId);
         return (new Response())->success(message: "User deleted successfully.");
     }
 
-    public function ForceDelete(string $user_id)
+    public function ForceDelete(string $modelId)
     {
-        $this->userService->ForceDelete($user_id);
+        $this->modelService->ForceDelete($modelId);
         return (new Response())->success(message: "User force deleted successfully.");
     }
 
-    public function restore($user_id)
+    public function restore(string $modelId)
     {
-        $this->userService->restore($user_id);
-        return (new Response())->success(message: "User Restored successfully.");
+        $this->modelService->restore($modelId);
+        return (new Response())->success(message: "User restored successfully.");
     }
 }

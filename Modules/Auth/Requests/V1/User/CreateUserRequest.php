@@ -18,26 +18,15 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'photo' => [new FileOrUrl('jpg, jpeg, png, gif, bmp, tiff, tif, webp, heic, heif, svg')],
+            'avatar' => [new FileOrUrl(['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'tif', 'webp', 'heic', 'heif', 'svg'])],
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'username' => ['required', 'string', new UniqueNotDeleted(User::class, 'username')],
+            'birthday' => ['date'],
             'phone' => ['required', 'string', new UniqueNotDeleted(User::class, 'phone'), 'regex:/^\+9639\d{8}$/'],
-            'password' => ['nullable', 'required', 'string', 'min:8', 'max:20'],
-            'birthday' => ['required', 'date'],
-            'gender' => ['required', 'boolean', new EnumRule(Gender::class)],
-
-            'addresses' => ['required', 'array'],
-            'addresses.*.name' => ['required', 'string'],
-            'addresses.*.state_id' => ['required', 'integer', 'exists:states,id', new NotSoftDeleted(State::class)],
-            'addresses.*.city' => ['required', 'string'],
-            'addresses.*.latitude' => ['required', 'numeric'],
-            'addresses.*.longitude' => ['required', 'numeric'],
-            'addresses.*.details' => ['required', 'string'],
-            'addresses.*.phone' => ['string', 'regex:/^\+9639\d{8}$/'],
-
-            'topics' => ['array'],
-            'topics.*' => ['required', 'string', new ExistsOrMinusOne(Topic::class), new NotSoftDeleted(Topic::class)],
+            'email' => ['required', 'email', new UniqueNotDeleted(User::class, 'email')],
+            'password' => ['required', 'string', 'min:8', 'max:20'],
+            'gender' => ['integer', new EnumRule(Gender::class), 'default:1'],
         ];
     }
 }

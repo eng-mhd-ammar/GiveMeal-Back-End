@@ -141,7 +141,8 @@ class BaseAuthService
 
     private function generateRandomString(int $length = 6): string
     {
-        return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, $length);
+        return '123456';
+        // return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, $length);
     }
 
     private function isEmail(string $text): bool

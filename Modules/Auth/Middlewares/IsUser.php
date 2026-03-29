@@ -8,18 +8,18 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Core\Utilities\Response as UtilitiesResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsSupport
+class IsUser
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('user')->check() && Auth::user()->is_support) {
+        if (Auth::guard('api')->check() && Auth::user()->is_user) {
             return $next($request);
         }
-        return (new UtilitiesResponse())->error(message: 'Sorry you are not a Support.');
+        return (new UtilitiesResponse())->error(message: 'Sorry you are not a user.');
     }
 }

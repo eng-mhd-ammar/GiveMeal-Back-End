@@ -24,7 +24,7 @@ class RegisterDTO extends BaseDTO
     public static function fromRequest(RegisterRequest $request): self
     {
         return new self(
-            avatar: parent::handleFileStoring($request->validated('avatar'), 'avatar'),
+            avatar: parent::handleFileStoring($request->validated('avatar'), 'avatars'),
             first_name: $request->validated('first_name'),
             last_name: $request->validated('last_name'),
             username: $request->validated('username'),

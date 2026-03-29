@@ -22,12 +22,13 @@ class BaseRepository
     /** ---------------- Core Setup ---------------- */
     protected function initQuery($query = null): void
     {
+        // dd($this->allowedSorts());
         $this->query = $query ?? QueryBuilder::for($this->model)
-            ->allowedSorts(array_merge($this->allowedSorts(), ['created_at']))
-            ->allowedFilters(array_merge($this->allowedFilters(), [AllowedFilter::trashed()]))
-            ->allowedFields($this->allowedFields())
-            ->allowedIncludes($this->allowedIncludes())
-            ->defaultSort(['-created_at']);
+            ->allowedSorts('created_at', ...$this->allowedSorts())
+            ->allowedFilters(AllowedFilter::trashed(), ...$this->allowedFilters())
+            ->allowedFields(...$this->allowedFields())
+            ->allowedIncludes(...$this->allowedIncludes())
+            ->defaultSort('-created_at');
 
         $this->originalQuery = clone $this->query;
     }

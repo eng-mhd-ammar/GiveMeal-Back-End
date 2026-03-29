@@ -15,9 +15,9 @@ class IsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('user')->check() && Auth::user()->is_admin) {
+        if (Auth::guard('api')->check() && Auth::user()->is_admin) {
             return $next($request);
         }
         return (new UtilitiesResponse())->error(message: 'Sorry you are not an admin.');

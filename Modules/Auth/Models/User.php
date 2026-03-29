@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Modules\Auth\Enums\Gender;
 use Modules\Core\Observers\CascadeSoftDeleteObserver;
 use Modules\Core\Observers\SyncFilesObserver;
@@ -58,14 +59,14 @@ class User extends Authenticatable implements JWTSubject
     public function isAdmin(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->hasRole('admin'),
+            get: fn () => Auth::guard('api')->check() && $this->hasRole('admin'),
         );
     }
 
     public function isUser(): Attribute
     {
         return new Attribute(
-            get: fn () => $this->hasRole('user'),
+            get: fn () => Auth::guard('api')->check() && $this->hasRole('user'),
         );
     }
 
