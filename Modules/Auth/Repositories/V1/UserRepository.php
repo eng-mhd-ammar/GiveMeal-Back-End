@@ -24,6 +24,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return [
             AllowedInclude::relationship('roles'),
+            AllowedInclude::relationship('institutions'),
         ];
     }
 }

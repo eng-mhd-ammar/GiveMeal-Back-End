@@ -4,16 +4,7 @@ namespace Modules\Auth\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\Address\Resources\V1\AddressResource;
-use Modules\Coupon\Resources\V1\CouponResource;
-use Modules\Coupon\Resources\V1\CouponUsageResource;
-use Modules\Coupon\Resources\V1\CouponUserResource;
-use Modules\Coupon\Resources\V1\ReferralResource;
-use Modules\Notification\Resources\V1\FcmTokenResource;
-use Modules\Notification\Resources\V1\TopicResource;
-use Modules\Notification\Resources\V1\UserTopicResource;
-use Modules\Policy\Resources\V1\PolicyResource;
-use Modules\Suggestion\Resources\V1\SuggestionResource;
+use Modules\Institution\Resources\V1\InstitutionResource;
 
 class UserResource extends JsonResource
 {
@@ -36,6 +27,7 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
 
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
+            'institutions' => InstitutionResource::collection($this->whenLoaded('institutions')),
         ];
     }
 }

@@ -6,13 +6,10 @@ use Modules\Core\DTO\OtpDTO;
 use Modules\Core\DTO\CodeDTO;
 use Modules\Core\Enums\GuardType;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Modules\Core\DTO\ResetPasswordDTO;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Auth\Enums\VerificationCodeType;
 use Modules\Auth\Models\VerificationCode;
-use Modules\Core\DTO\ChangePasswordDTO;
 use Modules\Core\DTO\BaseDTO;
 use Modules\Core\Exceptions\AuthException;
 use Modules\Auth\Resources\V1\UserResource;
@@ -27,7 +24,7 @@ class BaseAuthService
 
     public function login(BaseDTO $DTO): array
     {
-        $model = $this->model::whereAny($this->columns, $DTO->loginField)->firstOr(fn() => $this->throwInvalidCredentials());
+        $model = $this->model::whereAny($this->columns, $DTO->loginField)->firstOr(fn () => $this->throwInvalidCredentials());
         if ($this->checkActivity) {
             $model->is_active === true ?: $this->throwActivationException();
         }
@@ -89,7 +86,7 @@ class BaseAuthService
         return $data;
     }
 
-    public function sendCode(CodeDTO $DTO)
+    public function sendCode(CodeDTO $DTO): void
     {
         $model = $this->model::query()->whereAny(['phone', 'email'], $DTO->loginField)->firstOrFail();
 
@@ -150,51 +147,51 @@ class BaseAuthService
         return filter_var($text, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    public function throwInvalidCredentials()
+    public function throwInvalidCredentials(): void
     {
         AuthException::invalidCredentials();
     }
 
-    public function throwInvalidRefreshToken()
+    public function throwInvalidRefreshToken(): void
     {
         AuthException::invalidRefreshToken();
     }
 
-    public function throwActivationException()
+    public function throwActivationException(): void
     {
         AuthException::accountHasBeenDeactivated();
     }
-    public function throwUnverifiedAccount()
+    public function throwUnverifiedAccount(): void
     {
         AuthException::unverifiedAccount();
     }
-    public function throwUnverifiedPhoneAccount()
+    public function throwUnverifiedPhoneAccount(): void
     {
         AuthException::unverifiedPhoneAccount();
     }
-    public function throwUnverifiedMailAccount()
+    public function throwUnverifiedMailAccount(): void
     {
         AuthException::unverifiedMailAccount();
     }
 
-    public function throwInvalidOTP()
+    public function throwInvalidOTP(): void
     {
         AuthException::invalidOtpProvided();
     }
 
-    public function throwOtpTimeout()
+    public function throwOtpTimeout(): void
     {
         AuthException::otpTimeout();
     }
-    public function throwInvalidOldPassword()
+    public function throwInvalidOldPassword(): void
     {
         AuthException::invalidOldPassword();
     }
-    public function throwInvalidNewPassword()
+    public function throwInvalidNewPassword(): void
     {
         AuthException::invalidNewPassword();
     }
-    public function throwInvalidTokenProvided()
+    public function throwInvalidTokenProvided(): void
     {
         AuthException::invalidTokenProvided();
     }

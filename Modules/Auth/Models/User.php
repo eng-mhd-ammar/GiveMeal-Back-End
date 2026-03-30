@@ -15,6 +15,7 @@ use Modules\Auth\Enums\Gender;
 use Modules\Core\Observers\CascadeSoftDeleteObserver;
 use Modules\Core\Observers\SyncFilesObserver;
 use Modules\Core\Observers\CRUDObserver;
+use Modules\Institution\Models\Institution;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -59,28 +60,28 @@ class User extends Authenticatable implements JWTSubject
     public function isAdmin(): Attribute
     {
         return new Attribute(
-            get: fn() => Auth::guard('api')->check() && $this->hasRole('admin'),
+            get: fn () => Auth::guard('api')->check() && $this->hasRole('admin'),
         );
     }
 
     public function isUser(): Attribute
     {
         return new Attribute(
-            get: fn() => Auth::guard('api')->check() && $this->hasRole('user'),
+            get: fn () => Auth::guard('api')->check() && $this->hasRole('user'),
         );
     }
 
     public function avatarUrl(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->avatar ? asset($this->avatar) : '',
+            get: fn () => $this->avatar ? asset($this->avatar) : '',
         );
     }
 
     public function fullName(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->first_name . ' ' . $this->last_name,
+            get: fn () => $this->first_name . ' ' . $this->last_name,
         );
     }
 
@@ -97,5 +98,10 @@ class User extends Authenticatable implements JWTSubject
     public function verificationCodes(): HasMany
     {
         return $this->hasMany(VerificationCode::class, 'user_id', 'id');
+    }
+
+    public function institutions(): HasMany
+    {
+        return $this->hasMany(Institution::class, 'owner_id', 'id');
     }
 }

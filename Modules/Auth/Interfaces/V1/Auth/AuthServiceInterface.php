@@ -6,8 +6,6 @@ use Modules\Core\DTO\OtpDTO;
 use Modules\Core\DTO\CodeDTO;
 use Modules\Auth\DTO\V1\LoginDTO;
 use Modules\Auth\DTO\V1\RegisterDTO;
-use Modules\Core\DTO\ResetPasswordDTO;
-use Modules\Core\DTO\ChangePasswordDTO;
 
 interface AuthServiceInterface
 {

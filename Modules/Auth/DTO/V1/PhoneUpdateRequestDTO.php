@@ -9,7 +9,8 @@ class PhoneUpdateRequestDTO extends BaseDTO
 {
     public function __construct(
         public ?string $new_phone,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(PhoneUpdateRequestRequest $request): self
     {

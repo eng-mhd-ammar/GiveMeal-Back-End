@@ -44,12 +44,12 @@ class SyncFilesObserver
                 $newImages = is_array($newValue) ? $newValue : json_decode($newValue ?? '[]', true);
 
                 $oldImagesSet = collect($oldImages)
-                    ->reject(fn($img) => Str::startsWith($img, ['http://', 'https://']))
-                    ->map(fn($img) => ltrim(str_replace('storage/', '', $img), '/'));
+                    ->reject(fn ($img) => Str::startsWith($img, ['http://', 'https://']))
+                    ->map(fn ($img) => ltrim(str_replace('storage/', '', $img), '/'));
 
                 $newImagesSet = collect($newImages)
-                    ->reject(fn($img) => Str::startsWith($img, ['http://', 'https://']))
-                    ->map(fn($img) => ltrim(str_replace('storage/', '', $img), '/'));
+                    ->reject(fn ($img) => Str::startsWith($img, ['http://', 'https://']))
+                    ->map(fn ($img) => ltrim(str_replace('storage/', '', $img), '/'));
 
                 $imagesToDelete = $oldImagesSet->diff($newImagesSet);
 

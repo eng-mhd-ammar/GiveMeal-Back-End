@@ -12,7 +12,9 @@ use Modules\Core\Controllers\BaseController;
 
 class ProfileController extends BaseController
 {
-    public function __construct(protected ProfileServiceInterface $profileService) {}
+    public function __construct(protected ProfileServiceInterface $profileService)
+    {
+    }
 
     public function show()
     {

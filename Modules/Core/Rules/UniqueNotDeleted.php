@@ -10,7 +10,8 @@ class UniqueNotDeleted implements ValidationRule
         protected string $model,
         protected string|array $columns,
         protected ?string $ignoreId = null
-    ) {}
+    ) {
+    }
 
     public function validate($attribute, $value, $fail): void
     {

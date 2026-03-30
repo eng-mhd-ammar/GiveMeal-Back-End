@@ -10,7 +10,7 @@ use Modules\Auth\Services\V1\AuthService;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->register(AuthRouteServiceProvider::class);
 
@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->register(ProfileServiceProvider::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__ . "/../../Database/migrations");
         $this->loadViewsFrom(__DIR__ . "/../../Views", 'auth');

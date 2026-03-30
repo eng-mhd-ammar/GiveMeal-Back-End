@@ -5,7 +5,7 @@ namespace Modules\Auth\Routes\V1;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([])->group(
-    function () {
+    function (): void {
         // Route::middleware(['guest'])->group(function() {
         Route::post('/login', 'login');
         Route::post('/register', 'register');

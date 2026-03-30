@@ -18,39 +18,39 @@ class BaseRelationService
         }
     }
 
-    public function create(Model $model, array $values)
+    public function create(Model $model, array $values): void
     {
         $this->repository->create($model, $this->relation, $values);
     }
-    public function createMany(Model $model, array $values)
+    public function createMany(Model $model, array $values): void
     {
         $this->repository->createMany($model, $this->relation, $values);
     }
-    public function update(Model $model, $values)
+    public function update(Model $model, $values): void
     {
         $this->repository->update($model, $this->relation, $values);
     }
-    public function delete(Model $model, $values)
+    public function delete(Model $model, $values): void
     {
         $this->repository->delete($model, $this->relation, $values);
     }
-    public function attach(Model $model, $values)
+    public function attach(Model $model, $values): void
     {
         $this->repository->attach($model, $this->relation, $values);
     }
-    public function sync(Model $model, $values)
+    public function sync(Model $model, $values): void
     {
         $this->repository->sync($model, $this->relation, $values);
     }
-    public function syncWithoutDetaching(Model $model, $values)
+    public function syncWithoutDetaching(Model $model, $values): void
     {
         $this->repository->syncWithoutDetaching($model, $this->relation, $values);
     }
-    public function syncWithPivotValues(Model $model, $values)
+    public function syncWithPivotValues(Model $model, $values): void
     {
         $this->repository->syncWithPivotValues($model, $this->relation, $values);
     }
-    public function detach(Model $model, $values)
+    public function detach(Model $model, $values): void
     {
         $this->repository->detach($model, $this->relation, $values);
     }

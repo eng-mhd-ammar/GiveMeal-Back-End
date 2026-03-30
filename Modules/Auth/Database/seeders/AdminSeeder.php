@@ -2,7 +2,6 @@
 
 namespace Modules\Auth\Database\seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Modules\Auth\Models\User;
 

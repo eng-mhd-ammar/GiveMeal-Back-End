@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class NotSoftDeleted implements ValidationRule
 {
-    public function __construct(protected string $model) {}
+    public function __construct(protected string $model)
+    {
+    }
     /**
      * Run the validation rule.
      *

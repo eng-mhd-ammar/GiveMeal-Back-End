@@ -3,16 +3,11 @@
 namespace Modules\Auth\Requests\V1\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\Address\Models\Address;
-use Modules\Address\Models\State;
 use Modules\Auth\Enums\Gender;
 use Modules\Auth\Models\User;
 use Modules\Core\Rules\EnumRule;
-use Modules\Core\Rules\ExistsOrMinusOne;
 use Modules\Core\Rules\FileOrUrl;
-use Modules\Core\Rules\NotSoftDeleted;
 use Modules\Core\Rules\UniqueNotDeleted;
-use Modules\Notification\Models\Topic;
 
 class UpdateUserRequest extends FormRequest
 {

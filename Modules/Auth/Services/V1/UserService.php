@@ -9,7 +9,9 @@ use Modules\Core\Services\BaseService;
 
 class UserService extends BaseService implements UserServiceInterface
 {
-    public function __construct(protected UserRepositoryInterface $repository) {}
+    public function __construct(protected UserRepositoryInterface $repository)
+    {
+    }
 
     public function restore($model_id)
     {
@@ -23,7 +25,7 @@ class UserService extends BaseService implements UserServiceInterface
         return $model;
     }
 
-    public function throwAlreadyPhoneTaken()
+    public function throwAlreadyPhoneTaken(): void
     {
         UserException::alreadyPhoneTaken();
     }

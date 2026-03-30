@@ -107,42 +107,42 @@ class BaseService
         return $this->repository->restore($modelId);
     }
 
-    public function throwInvalidCredentials()
+    public function throwInvalidCredentials(): void
     {
         AuthException::invalidCredentials();
     }
 
-    public function throwActivationException()
+    public function throwActivationException(): void
     {
         AuthException::accountHasBeenDeactivated();
     }
-    public function throwUnverifiedAccount()
+    public function throwUnverifiedAccount(): void
     {
         AuthException::unverifiedAccount();
     }
 
-    public function throwInvalidOTP()
+    public function throwInvalidOTP(): void
     {
         AuthException::invalidOtpProvided();
     }
 
-    public function throwOtpTimeout()
+    public function throwOtpTimeout(): void
     {
         AuthException::otpTimeout();
     }
-    public function throwInvalidOldPassword()
+    public function throwInvalidOldPassword(): void
     {
         AuthException::invalidOldPassword();
     }
-    public function throwInvalidNewPassword()
+    public function throwInvalidNewPassword(): void
     {
         AuthException::invalidNewPassword();
     }
-    public function throwInvalidTokenProvided()
+    public function throwInvalidTokenProvided(): void
     {
         AuthException::invalidTokenProvided();
     }
-    public function throwNotAnAdmin()
+    public function throwNotAnAdmin(): void
     {
         AuthException::notAnAdmin();
     }

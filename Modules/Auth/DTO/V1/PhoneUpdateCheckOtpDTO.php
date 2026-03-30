@@ -10,7 +10,8 @@ class PhoneUpdateCheckOtpDTO extends BaseDTO
     public function __construct(
         public ?string $new_phone,
         public ?string $new_phone_code,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(PhoneUpdateCheckOtpRequest $request): self
     {

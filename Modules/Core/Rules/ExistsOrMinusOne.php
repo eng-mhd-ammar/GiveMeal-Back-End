@@ -6,7 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class ExistsOrMinusOne implements ValidationRule
 {
-    public function __construct(protected string $model, protected string $column = 'id') {}
+    public function __construct(protected string $model, protected string $column = 'id')
+    {
+    }
 
     /**
      * @param  string  $attribute

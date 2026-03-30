@@ -32,7 +32,7 @@ class FilterOwner implements Filter
             return $query;
         }
 
-        return $query->where(function ($q) use ($user) {
+        return $query->where(function ($q) use ($user): void {
             foreach ($this->columns as $index => $column) {
                 if ($index === 0) {
                     $q->where($column, $user->id);

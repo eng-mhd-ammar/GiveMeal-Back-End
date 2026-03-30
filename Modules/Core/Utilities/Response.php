@@ -72,7 +72,9 @@ class Response extends HttpFoundationResponse
     public const HTTP_NOT_EXTENDED = 510;
     public const HTTP_NETWORK_AUTHENTICATION_REQUIRED = 511;
 
-    public function __construct(private $collection = null) {}
+    public function __construct(private $collection = null)
+    {
+    }
 
     public function success($collection = null, ?string $message = null, bool $status = true, int $code = self::HTTP_OK, ?string $resName = 'data', array $headers = [], array $cookies = []): JsonResponse
     {
@@ -109,7 +111,7 @@ class Response extends HttpFoundationResponse
     {
         $isNotInternalError = $code != self::HTTP_INTERNAL_SERVER_ERROR;
         // $response = ['status' => false, 'message' => str(translate($message, catch: $isNotInternalError))->when($isNotInternalError, fn($str) => $str->title())];
-        $response = ['status' => false, 'message' => str($message)->when($isNotInternalError, fn($str) => $str->title())];
+        $response = ['status' => false, 'message' => str($message)->when($isNotInternalError, fn ($str) => $str->title())];
 
         // $response['message'] ??= translate('Something Went Wrong');
         $response['message'] ??= 'Something Went Wrong';
@@ -132,7 +134,7 @@ class Response extends HttpFoundationResponse
         foreach ($messages as $key => $message) {
             // $translatedMessages[$key] = str(translate($message, catch: $isNotInternalError))
             $translatedMessages[$key] = str($message)
-                ->when($isNotInternalError, fn($str) => $str->title());
+                ->when($isNotInternalError, fn ($str) => $str->title());
         }
 
         $response = ['status' => false, 'errors' => $translatedMessages];

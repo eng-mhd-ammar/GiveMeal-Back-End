@@ -32,81 +32,81 @@ class CRUDObserver
         // $logger->info("{$modelName} {$action}: ", $model->toArray());
     }
 
-    public function retrieved(Model $model)
+    public function retrieved(Model $model): void
     {
         $this->logAction('retrieved', $model);
     }
 
     // CRUD Actions =====================================================
 
-    public function creating(Model $model)
+    public function creating(Model $model): void
     {
         $this->logAction('creating', $model);
     }
 
-    public function created(Model $model)
+    public function created(Model $model): void
     {
         $this->logAction('created', $model);
     }
 
-    public function updating(Model $model)
+    public function updating(Model $model): void
     {
         $this->logAction('updating', $model);
     }
 
-    public function updated(Model $model)
+    public function updated(Model $model): void
     {
         $this->logAction('updated', $model);
     }
 
-    public function saving(Model $model)
+    public function saving(Model $model): void
     {
         $this->logAction('saving', $model);
     }
 
-    public function saved(Model $model)
+    public function saved(Model $model): void
     {
         $this->logAction('saved', $model);
     }
 
-    public function deleting(Model $model)
+    public function deleting(Model $model): void
     {
         $this->logAction('deleting', $model);
     }
 
-    public function deleted(Model $model)
+    public function deleted(Model $model): void
     {
         $this->logAction('deleted', $model);
     }
 
-    public function restoring(Model $model)
+    public function restoring(Model $model): void
     {
         $this->logAction('restoring', $model);
     }
 
-    public function restored(Model $model)
+    public function restored(Model $model): void
     {
         $this->logAction('restored', $model);
     }
 
-    public function forceDeleted(Model $model)
+    public function forceDeleted(Model $model): void
     {
         $this->logAction('force deleted', $model);
     }
 
     // Pivot Relations =====================================================
 
-    public function attached($relation, $parent, $ids, $attributes)
+    public function attached($relation, $parent, $ids, $attributes): void
     {
         $this->logAction("attached to {$relation}", $parent);
     }
 
-    public function detached($relation, $parent, $ids)
+    public function detached($relation, $parent, $ids): void
     {
         $this->logAction("detached from {$relation}", $parent);
     }
 
-    public function synced($relation, $parent, $changes)
+    public function synced($relation, $parent, $changes): void
     {
         $this->logAction("synced {$relation}", $parent);
     }

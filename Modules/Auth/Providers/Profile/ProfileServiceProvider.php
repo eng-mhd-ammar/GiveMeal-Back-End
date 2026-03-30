@@ -10,7 +10,7 @@ use Modules\Auth\Services\V1\ProfileService;
 
 class ProfileServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->register(ProfileRouteServiceProvider::class);
 
@@ -18,7 +18,7 @@ class ProfileServiceProvider extends ServiceProvider
         $this->app->bind(ProfileRepositoryInterface::class, ProfileRepository::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         //
     }

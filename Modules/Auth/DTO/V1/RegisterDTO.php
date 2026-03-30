@@ -18,7 +18,8 @@ class RegisterDTO extends BaseDTO
         public ?Carbon $birthday,
         public ?string $password,
         public ?int $gender,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(RegisterRequest $request): self
     {

@@ -3,7 +3,6 @@
 namespace Modules\Auth\Requests\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Modules\Auth\Enums\Gender;
 use Modules\Auth\Models\User;
 use Modules\Core\Rules\EnumRule;

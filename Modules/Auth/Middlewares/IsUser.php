@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Core\Utilities\Response as UtilitiesResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class IsUser
 {

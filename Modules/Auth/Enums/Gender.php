@@ -12,15 +12,6 @@ enum Gender: int
         return ucfirst(strtolower(str_replace('_', ' ', $this->name)));
     }
 
-    public static function fromInt(int|string $value): ?self
-    {
-        return match ((int) $value) {
-            0 => self::FEMALE,
-            1 => self::MALE,
-            default => null,
-        };
-    }
-
     public static function tableComment(): string
     {
         $labels = '';

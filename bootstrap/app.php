@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Exceptions\ExceptionsHandler;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })
-    ->withExceptions(function (Exceptions $exceptions) {
+    ->withExceptions(function (Exceptions $exceptions): void {
         if (!env('APP_DEBUG')) {
             $exceptions->render(function (Throwable|Exception $exception) {
                 if (request()->is('api/*')) {

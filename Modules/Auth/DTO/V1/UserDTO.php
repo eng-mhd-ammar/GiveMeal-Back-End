@@ -19,7 +19,8 @@ class UserDTO extends BaseDTO
         public ?string $password,
         public ?Carbon $birthday,
         public ?bool $gender,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(CreateUserRequest|UpdateUserRequest $request): self
     {

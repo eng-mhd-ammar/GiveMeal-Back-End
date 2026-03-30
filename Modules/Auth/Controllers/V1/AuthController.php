@@ -23,7 +23,9 @@ use Modules\Core\Utilities\Response;
 
 class AuthController extends BaseController
 {
-    public function __construct(protected AuthServiceInterface $authService) {}
+    public function __construct(protected AuthServiceInterface $authService)
+    {
+    }
 
     public function login(LoginRequest $request): JsonResponse
     {

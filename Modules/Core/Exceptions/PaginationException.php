@@ -7,7 +7,7 @@ use Modules\Core\Utilities\Response;
 
 class PaginationException extends Exception
 {
-    public static function invalidPerPageProvided()
+    public static function invalidPerPageProvided(): void
     {
         throw new self("Page Size Query Parameter Should Be more then 0", Response::HTTP_BAD_REQUEST);
     }

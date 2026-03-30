@@ -10,7 +10,7 @@ use Modules\Auth\Services\V1\UserService;
 
 class UserServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->register(UserRouteServiceProvider::class);
 
@@ -18,7 +18,7 @@ class UserServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         //
     }

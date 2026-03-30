@@ -7,11 +7,11 @@ use Modules\Core\Utilities\Response;
 
 class ServiceException extends BaseException
 {
-    public static function relationNotFound(string $relation)
+    public static function relationNotFound(string $relation): void
     {
         throw new self("Call to undefined relation {$relation} ", Response::HTTP_INTERNAL_SERVER_ERROR);
     }
-    public static function duplicatedShiftInTheSameDay(string $duplicatedDays)
+    public static function duplicatedShiftInTheSameDay(string $duplicatedDays): void
     {
         throw new self("Duplicated shifts provided in the same day [$duplicatedDays]", Response::HTTP_BAD_REQUEST);
     }

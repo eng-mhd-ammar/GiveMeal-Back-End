@@ -3,7 +3,6 @@
 namespace Modules\Auth\DTO\V1;
 
 use Carbon\Carbon;
-use Modules\Address\DTO\V1\AddressDTO;
 use Modules\Auth\Requests\V1\Profile\UpdateProfileRequest;
 use Modules\Core\DTO\BaseDTO;
 
@@ -19,7 +18,8 @@ class ProfileDTO extends BaseDTO
         public ?string $password,
         public ?Carbon $birthday,
         public ?bool $gender,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(UpdateProfileRequest $request): self
     {

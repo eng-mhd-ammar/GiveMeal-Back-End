@@ -1,5 +1,6 @@
 <?php
 
+
 use Modules\Auth\Models\User;
 
 return [

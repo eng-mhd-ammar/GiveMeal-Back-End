@@ -9,7 +9,8 @@ class ChangePasswordDTO extends BaseDTO
     public function __construct(
         public ?string $old_password,
         public ?string $new_password,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(ChangePasswordRequest $request): self
     {

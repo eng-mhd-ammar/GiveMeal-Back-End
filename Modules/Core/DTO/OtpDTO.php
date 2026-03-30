@@ -9,7 +9,8 @@ class OtpDTO extends BaseDTO
     public function __construct(
         public ?string $loginField,
         public ?string $code,
-    ) {}
+    ) {
+    }
 
     public static function fromRequest(OtpRequest $request): self
     {

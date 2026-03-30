@@ -29,7 +29,7 @@ class ExceptionsHandler
 
             case $e instanceof ValidationException:
                 return (new Response())->errors(
-                    messages: collect($e->errors())->map(fn($error) => $error[0])->toArray(),
+                    messages: collect($e->errors())->map(fn ($error) => $error[0])->toArray(),
                     code: Response::HTTP_UNPROCESSABLE_ENTITY
                 );
                 break;

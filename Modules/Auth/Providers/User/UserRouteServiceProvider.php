@@ -8,9 +8,9 @@ use Modules\Auth\Controllers\V1\UserController;
 
 class UserRouteServiceProvider extends RouteServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $this->routes(function () {
+        $this->routes(function (): void {
             Route::middleware('api')
                 ->controller(UserController::class)
                 ->prefix('api/v1/user')

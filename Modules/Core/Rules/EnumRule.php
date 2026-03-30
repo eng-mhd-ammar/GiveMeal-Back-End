@@ -20,7 +20,7 @@ class EnumRule implements Rule
 
     public function passes($attribute, $value): bool
     {
-        $enumValues = array_map(fn($case) => (string) $case->value, $this->enum::cases());
+        $enumValues = array_map(fn ($case) => (string) $case->value, $this->enum::cases());
         return in_array((string) $value, $enumValues, true);
     }
 
