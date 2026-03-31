@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,6 +17,7 @@ use Modules\Core\Observers\CascadeSoftDeleteObserver;
 use Modules\Core\Observers\SyncFilesObserver;
 use Modules\Core\Observers\CRUDObserver;
 use Modules\Institution\Models\Institution;
+use Modules\Institution\Models\UserBranch;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -34,7 +36,7 @@ class User extends Authenticatable implements JWTSubject
 
     public array $FilesFields = ['avatar'];
 
-    public array $cascadeDeletes = ['verificationCodes'];
+    public array $cascadeDeletes = ['verificationCodes', 'userBranches'];
 
     protected $guard_name = 'api';
 
@@ -100,8 +102,23 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(VerificationCode::class, 'user_id', 'id');
     }
 
-    public function institutions(): HasMany
+    public function ownedInstitutions(): HasMany
     {
         return $this->hasMany(Institution::class, 'owner_id', 'id');
+    }
+
+    public function userBranches(): HasMany
+    {
+        return $this->hasMany(UserBranch::class, 'user_id', 'id');
+    }
+
+    public function branches(): BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class, 'user_branches', 'user_id', 'branch_id');
+    }
+
+    public function memberInstitutions(): BelongsToMany
+    {
+        return $this->belongsToMany(Institution::class, 'user_institutions', 'user_id', 'institution_id');
     }
 }

@@ -29,6 +29,8 @@ class InstitutionResource extends JsonResource
 
             'owner' => new UserResource($this->whenLoaded('owner')),
             'branches' => BranchResource::collection($this->whenLoaded('branches')),
+            'members' => UserResource::collection($this->whenLoaded('members')),
+            'user_institutions' => UserInstitutionResource::collection($this->whenLoaded('userInstitutions')),
         ];
     }
 }

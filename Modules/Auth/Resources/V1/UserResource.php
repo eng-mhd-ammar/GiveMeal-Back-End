@@ -4,7 +4,9 @@ namespace Modules\Auth\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Institution\Resources\V1\BranchResource;
 use Modules\Institution\Resources\V1\InstitutionResource;
+use Modules\Institution\Resources\V1\UserBranchResource;
 
 class UserResource extends JsonResource
 {
@@ -27,7 +29,10 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
 
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
-            'institutions' => InstitutionResource::collection($this->whenLoaded('institutions')),
+            'owned_institutions' => InstitutionResource::collection($this->whenLoaded('ownedInstitutions')),
+            'member_institutions' => InstitutionResource::collection($this->whenLoaded('memberInstitutions')),
+            'user_branches' => UserBranchResource::collection($this->whenLoaded('userBranches')),
+            'branches' => BranchResource::collection($this->whenLoaded('branches')),
         ];
     }
 }

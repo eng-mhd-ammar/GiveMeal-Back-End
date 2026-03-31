@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Core\Observers\CascadeSoftDeleteObserver;
 use Modules\Core\Observers\SyncFilesObserver;
@@ -25,7 +27,7 @@ class Branch extends Model
 
     public array $FilesFields = ['logo', 'attachments'];
 
-    // public array $cascadeDeletes = ['address'];
+    public array $cascadeDeletes = ['userBranches'];
 
     protected $guard_name = 'api';
 
@@ -38,13 +40,18 @@ class Branch extends Model
         'is_main_branch' => 'boolean',
     ];
 
-    public function institution()
+    public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class, 'institution_id', 'id');
     }
 
-    // public function verificationCodes(): HasMany
-    // {
-    //     return $this->hasMany(VerificationCode::class, 'user_id', 'id');
-    // }
+    public function userBranches(): HasMany
+    {
+        return $this->hasMany(UserBranch::class, 'branch_id', 'id');
+    }
+
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_branches', 'branch_id', 'user_id');
+    }
 }

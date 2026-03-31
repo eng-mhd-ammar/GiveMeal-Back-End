@@ -25,7 +25,9 @@ class BranchRepository extends BaseRepository implements BranchRepositoryInterfa
     {
         return [
             AllowedInclude::relationship('institution.owner'),
-            AllowedInclude::relationship('address.state'),
+            AllowedInclude::relationship('user_branches', 'userBranches'),
+            AllowedInclude::relationship('members'),
+            // AllowedInclude::relationship('address.state'),
         ];
     }
 }

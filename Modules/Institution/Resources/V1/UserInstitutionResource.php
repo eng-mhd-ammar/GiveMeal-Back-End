@@ -8,7 +8,7 @@ use Modules\Auth\Resources\V1\UserResource;
 use Modules\Institution\Models\Institution;
 use Modules\Institution\Resources\V1\InstitutionResource;
 
-class BranchResource extends JsonResource
+class UserInstitutionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,16 +19,10 @@ class BranchResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'institution_id' => $this->institution_id,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'is_main_branch' => $this->is_main_branch,
+            'is_admin' => $this->is_admin,
 
+            'user' => new UserResource($this->whenLoaded('user')),
             'institution' => new InstitutionResource($this->whenLoaded('institution')),
-            'members' => UserResource::collection($this->whenLoaded('members')),
-            'user_branches' => UserBranchResource::collection($this->whenLoaded('userBranches')),
         ];
     }
 }

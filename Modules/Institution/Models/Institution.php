@@ -69,4 +69,14 @@ class Institution extends Model
     {
         return $this->hasMany(Branch::class, 'institution_id', 'id');
     }
+
+    public function userInstitutions(): HasMany
+    {
+        return $this->hasMany(UserInstitution::class, 'institution_id', 'id');
+    }
+
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_institutions', 'institution_id', 'user_id');
+    }
 }
