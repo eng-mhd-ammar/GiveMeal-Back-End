@@ -26,8 +26,6 @@ class Institution extends Model
 
     public array $cascadeDeletes = ['branches'];
 
-    protected $guard_name = 'api';
-
     protected $casts = [
         'logo' => 'string',
         'name' => 'string',

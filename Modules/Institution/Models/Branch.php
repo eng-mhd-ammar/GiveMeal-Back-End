@@ -29,8 +29,6 @@ class Branch extends Model
 
     public array $cascadeDeletes = ['userBranches'];
 
-    protected $guard_name = 'api';
-
     protected $casts = [
         'name' => 'string',
         'description' => 'string',

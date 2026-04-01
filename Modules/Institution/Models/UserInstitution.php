@@ -25,8 +25,6 @@ class UserInstitution extends Model
 
     public string $logChannel = "user-institution";
 
-    protected $guard_name = 'api';
-
     protected $casts = [
         'user_id' => 'string',
         'institution_id' => 'string',
