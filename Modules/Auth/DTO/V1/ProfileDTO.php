@@ -31,7 +31,7 @@ class ProfileDTO extends BaseDTO
             phone: $request->validated('phone'),
             email: $request->validated('email'),
             password: $request->validated('password'),
-            birthday: Carbon::parse($request->validated('birthday')),
+            birthday: self::prepareDateTime($request->validated('birthday')),
             gender: $request->validated('gender'),
         );
     }

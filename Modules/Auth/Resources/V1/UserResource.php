@@ -4,6 +4,7 @@ namespace Modules\Auth\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Donation\Resources\V1\DonationResource;
 use Modules\Institution\Resources\V1\BranchResource;
 use Modules\Institution\Resources\V1\InstitutionResource;
 use Modules\Institution\Resources\V1\UserBranchResource;
@@ -25,7 +26,7 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'phone' => $this->phone,
             'email' => $this->email,
-            'birthday' => \Carbon\Carbon::parse($this->birthday)->format('Y-m-d'),
+            'birthday' => $this->formatted_birthday,
             'gender' => $this->gender,
 
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
@@ -33,6 +34,9 @@ class UserResource extends JsonResource
             'member_institutions' => InstitutionResource::collection($this->whenLoaded('memberInstitutions')),
             'user_branches' => UserBranchResource::collection($this->whenLoaded('userBranches')),
             'branches' => BranchResource::collection($this->whenLoaded('branches')),
+
+            'donations_sent' => DonationResource::collection($this->whenLoaded('donationsSent')),
+            'donations_received' => DonationResource::collection($this->whenLoaded('donationsReceived')),
         ];
     }
 }

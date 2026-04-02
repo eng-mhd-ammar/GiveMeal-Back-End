@@ -15,19 +15,18 @@ class AddressRepository extends BaseRepository implements AddressRepositoryInter
     public function allowedFilters(): array
     {
         return [
-            // AllowedFilter::exact('institution', 'id'),
-            // AllowedFilter::exact('owner', 'owner_id'),
-            // AllowedFilter::exact('active', 'is_active'),
+            AllowedFilter::exact('address', 'id'),
+            AllowedFilter::exact('institution', 'institution_id'),
+            AllowedFilter::exact('branch', 'branch_id'),
+            AllowedFilter::exact('state', 'state_id'),
         ];
     }
 
     public function allowedIncludes(): array
     {
         return [
-            // AllowedInclude::relationship('owner'),
-            // AllowedInclude::relationship('branches'),
-            // AllowedInclude::relationship('user_institutions', 'userAddresss'),
-            // AllowedInclude::relationship('members'),
+            AllowedInclude::relationship('state'),
+            AllowedInclude::relationship('branch.institution'),
         ];
     }
 }

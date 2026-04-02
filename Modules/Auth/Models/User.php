@@ -16,6 +16,7 @@ use Modules\Auth\Enums\Gender;
 use Modules\Core\Observers\CascadeSoftDeleteObserver;
 use Modules\Core\Observers\SyncFilesObserver;
 use Modules\Core\Observers\CRUDObserver;
+use Modules\Donation\Models\Donation;
 use Modules\Institution\Models\Institution;
 use Modules\Institution\Models\UserBranch;
 use Spatie\Permission\Traits\HasPermissions;
@@ -87,6 +88,13 @@ class User extends Authenticatable implements JWTSubject
         );
     }
 
+    public function formattedBirthday(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->birthday ? \Carbon\Carbon::parse($this->birthday)->format('Y-m-d') : null,
+        );
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -120,5 +128,15 @@ class User extends Authenticatable implements JWTSubject
     public function memberInstitutions(): BelongsToMany
     {
         return $this->belongsToMany(Institution::class, 'user_institutions', 'user_id', 'institution_id');
+    }
+
+    public function donationsSent(): HasMany
+    {
+        return $this->hasMany(Donation::class, 'sender_user_id', 'id');
+    }
+
+    public function donationsReceived(): HasMany
+    {
+        return $this->hasMany(Donation::class, 'receiver_user_id', 'id');
     }
 }

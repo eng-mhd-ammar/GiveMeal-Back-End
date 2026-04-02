@@ -15,6 +15,7 @@ use Modules\Core\Observers\CRUDObserver;
 use Modules\Institution\Enums\InstitutionType;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Auth\Models\User;
+use Modules\Donation\Models\Donation;
 
 #[Fillable(['name', 'description', 'institution_id', 'phone', 'email', 'is_main_branch'])]
 #[ObservedBy([CascadeSoftDeleteObserver::class, CRUDObserver::class])]
@@ -51,5 +52,15 @@ class Branch extends Model
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_branches', 'branch_id', 'user_id');
+    }
+
+    public function donationsSent(): HasMany
+    {
+        return $this->hasMany(Donation::class, 'sender_branch_id', 'id');
+    }
+
+    public function donationsReceived(): HasMany
+    {
+        return $this->hasMany(Donation::class, 'receiver_branch_id', 'id');
     }
 }

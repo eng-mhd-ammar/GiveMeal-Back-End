@@ -15,19 +15,14 @@ class StateRepository extends BaseRepository implements StateRepositoryInterface
     public function allowedFilters(): array
     {
         return [
-            // AllowedFilter::exact('institution', 'id'),
-            // AllowedFilter::exact('owner', 'owner_id'),
-            // AllowedFilter::exact('active', 'is_active'),
+            AllowedFilter::exact('state', 'id'),
         ];
     }
 
     public function allowedIncludes(): array
     {
         return [
-            // AllowedInclude::relationship('owner'),
-            // AllowedInclude::relationship('branches'),
-            // AllowedInclude::relationship('user_institutions', 'userStates'),
-            // AllowedInclude::relationship('members'),
+            AllowedInclude::relationship('addresses.branch.institution'),
         ];
     }
 }

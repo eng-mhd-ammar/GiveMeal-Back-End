@@ -30,7 +30,7 @@ class RegisterDTO extends BaseDTO
             username: $request->validated('username'),
             phone: $request->validated('phone'),
             email: $request->validated('email'),
-            birthday: Carbon::parse($request->validated('birthday')),
+            birthday: self::prepareDateTime($request->validated('birthday')),
             password: $request->validated('password'),
             gender: $request->validated('gender'),
         );

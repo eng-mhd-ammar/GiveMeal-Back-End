@@ -1,0 +1,40 @@
+<?php
+
+namespace Modules\Donation\Models;
+
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Core\Observers\CRUDObserver;
+use Illuminate\Database\Eloquent\Model;
+
+#[Fillable(['donation_id', 'unit_id', 'name', 'description', 'quantity', 'notes'])]
+#[ObservedBy([CRUDObserver::class])]
+class DonationItem extends Model
+{
+    use HasFactory;
+    use SoftDeletes;
+
+    public string $logChannel = "donation-item";
+
+    protected $casts = [
+        'donation_id' => 'string',
+        'unit_id' => 'string',
+        'name' => 'string',
+        'description' => 'string',
+        'quantity' => 'string',
+        'notes' => 'string',
+    ];
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
+    }
+
+    public function donation(): BelongsTo
+    {
+        return $this->belongsTo(Donation::class, 'donation_id', 'id');
+    }
+}
